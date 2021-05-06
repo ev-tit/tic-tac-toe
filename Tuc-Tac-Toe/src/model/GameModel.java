@@ -11,10 +11,7 @@ public class GameModel {
  
 	Boolean mover;
 	int moves;
-	
-	public static final int Rows = 3;
-    public static final int Cols = 3;
-    
+	    
 	/************************************* CONSTRUCTOR ****************************************/
 	public GameModel(GameController gc) {
 		this.gc=gc;
@@ -111,11 +108,11 @@ public class GameModel {
 		checkIfGameEnded();
 	}
 	
-	
 	public String getMoverMark() {
 		return mover? "X": "O";
 	}
 	
+	//Check if X won
 	public boolean XWon(String[][] gameBoard) {
         if(gameBoard[0][0]=="X" && gameBoard[0][1]=="X" && gameBoard[0][2]=="X") {
             return true;
@@ -145,6 +142,7 @@ public class GameModel {
         	return false;
     }
 	
+	//Check if O won
 	public boolean OWon(String[][] gameBoard) {
         if(gameBoard[0][0]=="O" && gameBoard[0][1]=="O" && gameBoard[0][2]=="O") {
             return true;
@@ -174,10 +172,10 @@ public class GameModel {
         	return false;
     }
 	
-	//a method to check if the board is full
-    public boolean isBoardFull(String[][] gameBoard) {
-        for (int row = 0; row < Rows; row++) {
-            for (int col = 0; col < Cols; col++) {
+	//Check if the game board is full
+    public boolean FullBoard(String[][] gameBoard) {
+        for (int row = 0; row < 3 ; row++) {
+            for (int col = 0; col < 3 ; col++) {
                 if (gameBoard[row][col] == null) {
                     // if at least one cell on the board is not filled then the board is not full
                     return false;
@@ -187,30 +185,24 @@ public class GameModel {
         return true;
     }
     
-  //method to see who won
+    
+    //Check who player won
     public String GameResults(String[][] gameBoard) {
-        //check if the board is not full
-        
-        if(!isBoardFull(gameBoard)) {
-            //if none of the players won then the game is unfinished
-            
+        //if the board isn't full
+    	if(!FullBoard(gameBoard)) {
             if (OWon(gameBoard)) {
-                return "O";
-            
+                return "O"; 
             } else if (XWon(gameBoard)) {
                 return "X";
             }
             else {
-                return "Unfinished";
+                return "Undone";	//If none of the players won
             }
         }
         //else if the board is full
         else{
-            //if none of the players won then the game is a draw
-            
             if (OWon(gameBoard)) {
                 return "O";
-
             } else if (XWon(gameBoard)) {
                 return "X";
             }
@@ -220,26 +212,30 @@ public class GameModel {
         }
     }
     
-    public void checkIfGameEnded() {
-        
-        
-        if(GameResults(this.gameBoard)!="Unfinished") {
-        
-            //display the correct text
-            
+    //Shows the result in the label
+    public void checkIfGameEnded() { 
+        if(GameResults(this.gameBoard)!="Undone") {
             if(GameResults(this.gameBoard) == "Tie") {
                 GameBoard.textfield.setText("Tie");
+                //checkEnd(this.gameBoard);
             }
             else {
-                
-                GameBoard.textfield.setText(GameResults(this.gameBoard)+" Wins");        
-            }
-            }
-        
+                GameBoard.textfield.setText(GameResults(this.gameBoard) + " Wins");   
+                //checkEnd(this.gameBoard);
+            } 
+        }      
     }
-
-
-	
+    
+    /*public void checkEnd(String[][] gameBoard) {
+    	 for (int row = 0; row < 3 ; row++) {
+             for (int col = 0; col < 3 ; col++) {
+                 if (gameBoard[row][col] == null) {
+                	 throw new IllegalArgumentException("Game Ended");
+                 }
+             }
+		}
+	}*/
+    
 	public String getPlayerStats(String player) {
 		StringBuilder sb = new StringBuilder("");
 		sb.append(player).append("\n\n\n");

@@ -74,46 +74,5 @@ public class GameController extends WindowAdapter {
 		
 	}
 		
-/*		
-	//Find the player who won
-	public void findWinner() {
-		if(checkForWinner()==true) {
-			
-			// reverse the player marks
-			// because after we put x and we win, the game changes it to o
-			// but x is the winner
-			  if(model.getMoverMark() == "X") {
-				  model.getMoverMark().equals("O");
-			  	}
-			  else model.getMoverMark().equals("X");
-				
-			JOptionPane pane = new JOptionPane();
-			int dialogResult = JOptionPane.showConfirmDialog(pane, "Game Over." + model.getMoverMark() + "wins. Would you like to play again? ", "Game Over.", JOptionPane.YES_NO_OPTION);             
-			
-			  if(dialogResult == JOptionPane.YES_OPTION) {
-				  resetTheButtons();
-			  }else System.exit(0);
-		
-		}else if(checkForFull()) {
-			JOptionPane pane = new JOptionPane();
-		    int dialogResult = JOptionPane.showConfirmDialog(pane, "Draw. Play again?", "Game Over.", JOptionPane.YES_NO_OPTION);
-		    
-		       if(dialogResult == JOptionPane.YES_OPTION)
-		    	   resetTheButtons();
-		       else System.exit(0);
-		}
-		
-	}
-	
-	//methods used to reset the buttons so you can play again 
-	private void resetTheButtons() {
-		for(int i=0; i<9; i++) {
-			model.getMoverMark().equals("X");
-			gboard.cells[i].setToolTipText(" ");
-			
-		}
-	}
-	
-*/		
 	
 }
