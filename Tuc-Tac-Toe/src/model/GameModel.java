@@ -72,6 +72,10 @@ public class GameModel {
 		if (gameBoard[row][col]!=null) {
 			throw new IllegalArgumentException("Non playable cell");
 		}
+		
+		if(gResult(this.gameBoard) != "Undone") {
+			throw new IllegalArgumentException("Game Ended");
+		}
 	}
 	
 	public String getBoardMark(int row, int col) {
@@ -105,7 +109,7 @@ public class GameModel {
 			GameBoard.oTurn();
 		}
 		
-		checkIfGameEnded();
+		gEnd();
 	}
 	
 	public String getMoverMark() {
@@ -126,10 +130,10 @@ public class GameModel {
         else if(gameBoard[0][0]=="X" && gameBoard[1][0]=="X" && gameBoard[2][0]=="X") {
         	return true;
         }
-        else if(gameBoard[0][1]=="X" && gameBoard[1][1]=="X" && gameBoard[1][2]=="X") {
+        else if(gameBoard[0][1]=="X" && gameBoard[1][1]=="X" && gameBoard[2][1]=="X") {
         	return true;
         }
-        else if(gameBoard[0][2]=="X" && gameBoard[1][2]=="X" && gameBoard[2][1]=="X") {
+        else if(gameBoard[0][2]=="X" && gameBoard[1][2]=="X" && gameBoard[2][2]=="X") {
         	return true;
         }
         else if(gameBoard[0][2]=="X" && gameBoard[1][1]=="X" && gameBoard[2][0]=="X") {
@@ -187,7 +191,7 @@ public class GameModel {
     
     
     //Check who player won
-    public String GameResults(String[][] gameBoard) {
+    public String gResult(String[][] gameBoard) {
         //if the board isn't full
     	if(!FullBoard(gameBoard)) {
             if (OWon(gameBoard)) {
@@ -213,28 +217,16 @@ public class GameModel {
     }
     
     //Shows the result in the label
-    public void checkIfGameEnded() { 
-        if(GameResults(this.gameBoard)!="Undone") {
-            if(GameResults(this.gameBoard) == "Tie") {
+    public void gEnd() { 
+        if(gResult(this.gameBoard)!="Undone") {
+            if(gResult(this.gameBoard) == "Tie") {
                 GameBoard.textfield.setText("Tie");
-                //checkEnd(this.gameBoard);
             }
             else {
-                GameBoard.textfield.setText(GameResults(this.gameBoard) + " Wins");   
-                //checkEnd(this.gameBoard);
+                GameBoard.textfield.setText(gResult(this.gameBoard) + " Wins");   
             } 
         }      
     }
-    
-    /*public void checkEnd(String[][] gameBoard) {
-    	 for (int row = 0; row < 3 ; row++) {
-             for (int col = 0; col < 3 ; col++) {
-                 if (gameBoard[row][col] == null) {
-                	 throw new IllegalArgumentException("Game Ended");
-                 }
-             }
-		}
-	}*/
     
 	public String getPlayerStats(String player) {
 		StringBuilder sb = new StringBuilder("");

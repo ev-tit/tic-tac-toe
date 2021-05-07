@@ -49,8 +49,8 @@ public class MainWindow extends JFrame{
 
 		mainPanel = new MainAreaPanel(this.gc);
 		this.add(mainPanel,BorderLayout.CENTER);
+		this.pack();
 		this.setLocationRelativeTo(null);
-		this.pack();	
 		
 	}
 
