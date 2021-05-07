@@ -1,17 +1,25 @@
 package model;
 
+import javax.swing.JOptionPane;
+
 import control.GameController;
 import view.GameBoard;
+import view.MainAreaPanel;
+import view.MainWindow;
+import view.PlayerPanel;
 
 public class GameModel {
 	PlayersCatalogue  playerCatalogue;
 	String [] gamePlayers;		
 	String[][] gameBoard;
 	GameController gc;
+	MainWindow view;
+	GameModel model;
+	PlayerPanel plPanel;
  
 	Boolean mover;
 	int moves;
-	    
+		    
 	/************************************* CONSTRUCTOR ****************************************/
 	public GameModel(GameController gc) {
 		this.gc=gc;
@@ -109,12 +117,30 @@ public class GameModel {
 			GameBoard.oTurn();
 		}
 		
-		gEnd();
+		gEnd();        
 	}
 	
 	public String getMoverMark() {
 		return mover? "X": "O";
 	}
+	
+	/*public void restartGame() {
+		this.view.getRightPanel().getStartBtn().setEnabled(false);
+		this.view.getLeftPanel().getStartBtn().setEnabled(false);
+		this.view.getMainPanel().showCard(MainAreaPanel.HOF);
+		this.view.getLeftPanel().getSelectPlayerBtn().setEnabled(model.ready());
+		this.view.getRightPanel().getSelectPlayerBtn().setEnabled(model.ready());
+	}
+	
+	            this.view.getTopPanel().getDoneBtn().setEnabled(true);
+            
+            for (int row = 0; row < 3 ; row++) {
+                for (int col = 0; col < 3 ; col++) {
+                	gameBoard[row][col] = null;
+                       
+                 }
+            }
+	*/
 	
 	//Check if X won
 	public boolean XWon(String[][] gameBoard) {
@@ -221,13 +247,13 @@ public class GameModel {
         if(gResult(this.gameBoard)!="Undone") {
             if(gResult(this.gameBoard) == "Tie") {
                 GameBoard.textfield.setText("Tie");
-            }
+                }
             else {
-                GameBoard.textfield.setText(gResult(this.gameBoard) + " Wins");   
-            } 
+                GameBoard.textfield.setText(gResult(this.gameBoard) + " Wins");
+            }           
         }      
     }
-    
+        
 	public String getPlayerStats(String player) {
 		StringBuilder sb = new StringBuilder("");
 		sb.append(player).append("\n\n\n");

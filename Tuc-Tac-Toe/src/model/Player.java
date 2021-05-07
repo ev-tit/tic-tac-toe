@@ -7,7 +7,7 @@ public class Player {
 	int numOfLosses;
 	
 	
-	/***************************************** CONSTRUCTOR 2 ***********************************************/
+	/***************************************** CONSTRUCTOR 1 ***********************************************/
 	public Player(String name, int numOfGames, int wins, int losses) {
 		super();
 		this.name = name;
@@ -16,6 +16,11 @@ public class Player {
 		this.numOfGames = numOfGames;
 	}
 	
+	/***************************************** CONSTRUCTOR 2 ***********************************************/
+	public Player(String newName) {
+		this.name = name;
+	}
+
 	/******************************************** METHODS ***************************************************/
 	public String getName() {
 		return name;

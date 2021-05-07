@@ -36,12 +36,12 @@ public class TopPanel extends GamePanel{
 		addPlayerBtn = new JButton("Add Player");
 		addPlayerBtn.setPreferredSize(new Dimension(100, 40));
 		addPlayerBtn.setEnabled(true);
-		//addPlayerBtn.addActionListener((e)->{this.plCatalogue.addPlayer(), null);});
+		addPlayerBtn.addActionListener((e)->{this.gc.addPlayer();});		
 		
 		add(addPlayerBtn);
 		add(quitBtn);
 		add(doneBtn);				
-	}
+	} 
 
 	public JButton getQuitBtn() {
 		return quitBtn;

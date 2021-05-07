@@ -16,9 +16,9 @@ public class GameController extends WindowAdapter {
 	MainWindow view;
 	GameModel model;
 	GameBoard gboard;
-	//PlayersCatalogue plCat;
 	
-	
+	Player[] PlCatalogue;
+	int numOfPlayers = 4;
 	
 	public GameController() {
 		//this.gboard = new GameBoard(null);
@@ -61,6 +61,30 @@ public class GameController extends WindowAdapter {
 		this.view.getRightPanel().getSelectPlayerBtn().setEnabled(model.NoPlay());
 	}
 	
+	//Adds a Player
+  	public void addPlayer () {
+  		int z=-1;
+  		String newName = null;
+  		
+  		while(z<0) {
+  			String addPlayerWindow = JOptionPane.showInputDialog("Enter the name of the new player: ");       
+
+  			if(addPlayerWindow.length()>0) {
+  				z++;
+  				newName = addPlayerWindow;
+  				System.out.println("Name entered.");
+  			
+  			}else System.out.println("Name has not entered");
+  			
+  		}
+  		
+  		Player p = new Player(newName);
+  		PlCatalogue[numOfPlayers] = p;
+  		numOfPlayers++;
+  		
+  		System.out.println("Player added");
+  	}
+	
 	public GameModel getModel() {
 		return model;
 	}
@@ -69,10 +93,5 @@ public class GameController extends WindowAdapter {
 		return view;
 	}
 
-	public void addPlayer(String name, Player p) {
-		//plCat.addPlayer(p);
-		
-	}
-		
 	
 }

@@ -42,7 +42,7 @@ public class GameBoard extends GamePanel {
 				//System.out.println(cell.getBounds());
 			}
 		}
-		
+	
 		plMoves = new JPanel();
 		textfield = new JLabel();
 		
